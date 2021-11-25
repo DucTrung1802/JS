@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="tasks.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+<style>
+
+</style>
+
+<body>
+    <!-- Task 1 -->
+    <div id="task_1"></div>
+
+
+    <!-- Task 2 -->
+    <br>
+    <canvas id="canvas"></canvas>
+
+
+    <!-- Task 3 -->
+    <br><br>
+    <div id="random"></div>
+
+
+    <!-- Task 4 -->
+    <!-- Check the browser DevTools' console  -->
+
+
+    <!-- Task 5 -->
+    <form>
+        <br><br>
+        You have
+        <input readonly type="text" name="countdown" size="1" value="200"> chars left
+        <br><br>
+        <textarea name="message" rows="5" cols="90" placeholder="Type something"
+            onkeydown="limitText(this.form.message,this.form.countdown,200);"
+            onkeyup='limitText(this.form.message,this.form.countdown,200);'></textarea>
+
+    </form>
+
+
+
+
+    <script >
+        // Task 1
+        var names = ["sunny", "cloudy", "snowy", "rainy", "frosty", "windy", "stormy"];
+        var single_name = document.createElement("text");
+        single_name.innerHTML = chooseName(names);
+
+        var para = document.createElement("paragraph");
+        para.innerHTML = "Today is a ___ day.";
+        para.innerHTML = para.innerHTML.replace("___", single_name.innerHTML);
+
+        document.getElementById("task_1").appendChild(para);
+
+
+
+        // Task 2
+        const canvas = document.getElementById('canvas');
+        // draw_rectangle(x, y, width, height, color);
+        // 0 <= x <= 300
+        // 0 <= y <= 150
+        // 0 <= width <= 150
+        // 0 <= height <= 150
+        draw_rectangle(0, 0, 300, 150, "orange");
+
+
+
+        // Task 3
+        var new_names = ["sunny", "cloudy", "snowy", "rainy", "frosty", "windy", "stormy"];
+        var new_single_name = document.createElement("text");
+        new_single_name.innerHTML = chooseNameUpgrade(new_names);
+
+        var new_para = document.createElement("paragraph");
+        new_para.innerHTML = "Yesterday was a ___ day.";
+        new_para.innerHTML = new_para.innerHTML.replace("___", new_single_name.innerHTML);
+        document.getElementById("random").appendChild(new_para);
+
+
+
+        // Task 4
+        var square = new Shape("square", 4, 5);
+        square.calcPerimeter();
+
+        var triangle = new Shape("triangle", 3, 3);
+        triangle.calcPerimeter();
+
+
+
+        // Task 5
+        // Function is in .js file
+
+
+    </script>
+
+</body>
+
+</html>
