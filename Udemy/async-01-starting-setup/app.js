@@ -1,16 +1,32 @@
 const button = document.querySelector("button");
 const output = document.querySelector("p");
 
+const setTimer = (duration) => {
+  const promise = new Promise();
+  setTimeout(() => {}, duration);
+};
+
 function trackUserHandler() {
-  console.log("Clicked!");
+  navigator.geolocation.getCurrentPosition(
+    (posData) => {
+      setTimeout(() => console.log(posData), 2000);
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
+  setTimeout(() => {
+    console.log("Timer done!");
+  }, 0);
+  console.log("Getting position...");
 }
 
 button.addEventListener("click", trackUserHandler);
 
-let result = 0;
+// let result = 0;
 
-for (let i = 0; i < 10000000; i++) {
-  result += i;
-}
+// for (let i = 0; i < 10000000; i++) {
+//   result += i;
+// }
 
-console.log(result);
+// console.log(result);
