@@ -14,7 +14,7 @@ function productDescription(strings, productName, productPrice) {
     priceCategory = "fair";
   }
   // return `${strings[0]}${productName}${strings[1]}${priceCategory}${strings[2]}`;
-  return {name: productName, price: prodPrice}
+  return { name: productName, price: prodPrice };
 }
 
 const prodName = "JS Course";
