@@ -7,13 +7,10 @@ const getPosition = (opts) => {
       (success) => {
         resolve(success);
       },
-      (error) => {
-        reject(error);
-      },
+      (error) => {},
       opts
     );
   });
-
   return promise;
 };
 
@@ -27,22 +24,18 @@ const setTimer = (duration) => {
 };
 
 function trackUserHandler() {
-  let posotionData;
+  let positionData;
   getPosition()
     .then((posData) => {
-      posotionData = posData;
+      positionData = posData;
       return setTimer(2000);
     })
-    .catch(err => {
-      console.log(err)
-    })
     .then((data) => {
-      console.log(data, posotionData);
+      console.log(data, positionData);
     });
-
   setTimer(1000).then(() => {
     console.log("Timer done!");
-  }, 0);
+  });
   console.log("Getting position...");
 }
 
@@ -50,7 +43,7 @@ button.addEventListener("click", trackUserHandler);
 
 // let result = 0;
 
-// for (let i = 0; i < 10000000; i++) {
+// for (let i = 0; i < 100000000; i++) {
 //   result += i;
 // }
 
