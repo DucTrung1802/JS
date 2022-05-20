@@ -17,6 +17,9 @@ const getPosition = (opts) => {
   return promise;
 };
 
+// Declare an async function
+// const functionName = async (parameters) => {}
+
 const setTimer = (duration) => {
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -26,23 +29,31 @@ const setTimer = (duration) => {
   return promise;
 };
 
-function trackUserHandler() {
+async function trackUserHandler() {
   let posotionData;
-  getPosition()
-    .then((posData) => {
-      posotionData = posData;
-      return setTimer(2000);
-    })
-    .catch(err => {
-      console.log(err)
-    })
-    .then((data) => {
-      console.log(data, posotionData);
-    });
+  let posData;
+  let timerData;
+  try {
+    posData = await getPosition();
+    timerData = await setTimer(2000);
+  } catch (error) {
+    console.log(error);
+  }
+  console.log(timerData, posData);
+  // .then((posData) => {
+  //   posotionData = posData;
+  //   return setTimer(2000);
+  // })
+  // .catch((err) => {
+  //   console.log(err);
+  // })
+  // .then((data) => {
+  //   console.log(data, posotionData);
+  // });
 
   setTimer(1000).then(() => {
     console.log("Timer done!");
-  }, 0);
+  });
   console.log("Getting position...");
 }
 
