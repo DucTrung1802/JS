@@ -1,57 +1,36 @@
-// Task 1
+function getValueA() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => { resolve(2) }, 1000);
+    });
+}
 
-function chooseName(names) {
-    return names[Math.floor(Math.random() * names.length)];
+function getValueB() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => { resolve(3) }, 2000);
+    });
+}
+
+function getValueC() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => { resolve(4) }, 3000);
+    });
 }
 
 
+async function getABC() {
+    // Promise.all() allows us to send all requests at the same time. 
+    let results = await Promise.all([getValueA(), getValueB(), getValueC()]);
 
-// Task 2
-function draw_rectangle(x, y, width, height, color) {
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = color;
-    ctx.fillRect(x, y, width, height);
-    return ctx;
+    return results.reduce((total, value) => total * value);
 }
 
+(async () => {
+    const startTime = Date.now();
+    const res = await getABC().then(result => result);
+    const endTime = Date.now();
 
+    const timeTaken = endTime - startTime;
 
-// Task 3
-function random(start, finish) {
-    return Math.floor(start + Math.random() * (finish - start + 1));
-}
-
-
-function chooseNameUpgrade(names) {
-    return names[random(0, names.length - 1)];
-}
-
-
-
-// Task 4
-
-function Shape(name, sides, sideLength) {
-    this.name = name;
-    this.sides = sides;
-    this.sideLength = sideLength;
-
-    this.calcPerimeter = function () {
-        let Peri = this.sides * this.sideLength;
-        console.log(this.name);
-        console.log(Peri);
-    }
-}
-
-
-
-// Task 5
-function limitText(limitField, limitCount, limitNum) {
-    if (limitField.value.length > limitNum) {
-        limitField.value = limitField.value.substring(0, limitNum);
-    } else {
-        limitCount.value = limitNum - limitField.value.length;
-    }
-}
-
-
+    console.log(`Result of operation = ${res}`);
+    console.log(`Time taken to perform addition = ${timeTaken} milliseconds`);
+})();
